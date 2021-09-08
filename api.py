@@ -1,10 +1,12 @@
 import aiohttp
 from fastapi import FastAPI
 from matrix_manipulation import GetMatrix
+from exceptions import handle_server_exceptions
 
 app = FastAPI()
 
 
+@handle_server_exceptions
 @app.get("/get_matrix/")
 async def get_matrix(url: str):
     async with aiohttp.ClientSession() as session:
